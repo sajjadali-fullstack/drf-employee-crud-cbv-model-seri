@@ -36,4 +36,93 @@ class EmployeeCRUDCBV(View):
         json_data = JSONRenderer().render(eserializer.data)
         return HttpResponse(json_data,content_type='application/json')
 
+
+    # Create Resource
+    def post(self, request, *args, **kwargs):
+        # data from body
+        json_data = request.body
+        # convert into stream
+        stream = io.BytesIO(json_data)
+        # JSON data into python data
+        pydata = JSONParser().parse(stream)
+        serializer = EmployeeSerializer(data=pydata)
+
+        if serializer.is_valid():
+            serializer.save()
+            msg = {'msg':'Resources Created sucessfully'}
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+
+        # Print Error
+        json_data = JSONRenderer().render(serializer.errors)
+        return HttpResponse(json_data, content_type='application/json',status=400)
     
+
+    # Update Resource
+    def put(self, request, *args, **kwargs):
+        # collect he data 
+        json_data = request.body
+        # convert into stream
+        stream = io.BytesIO(json_data)
+        # JSON data into python data
+        pydata = JSONParser().parse(stream)
+        
+        id = pydata.get('id')
+        emp = Employee.objects.get(id=id)
+        serializer = EmployeeSerializer(emp,data=pydata)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            msg = {'msg':'Resources Updated Successfully!'}
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+
+        json_data = JSONRenderer().render(serializer.errors)
+        return HttpResponse(json_data, content_type='application/json', status=400)
+
+
+    # Partial Resource
+
+    def patch(self, request, *args, **kwargs):
+        # collect the data 
+        json_data = request.body
+        # convert into stream
+        stream = io.BytesIO(json_data)
+        # convert into python data
+        pydata = JSONParser().parse(stream)
+
+        id = pydata.get('id')
+        emp = Employee.objects.get(id=id)
+        serializer = EmployeeSerializer(emp, data=pydata, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            msg = {'msg':'Resources Partially updated sucessfully'}
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+
+        json_data = JSONRenderer().render(serializer.errors)
+        return HttpResponse(json_data, content_type='application/json', status=400)
+        
+
+
+                                                # DELETE RECORD
+
+
+    def delete(self,request,*awargs,**kwargs):
+        # collect data
+        json_data = request.body
+        # conver into stream
+        stream = io.BytesIO(json_data)
+        # convert into python
+        pydata = JSONParser().parse(stream)
+
+        id = pydata.get('id')
+        emp = Employee.objects.get(id=id)
+        emp.delete()
+        msg = {'msg':'Resources Deleted sucessfully!'}
+        # convert into json
+        json_data = JSONRenderer().render(msg)
+        return HttpResponse(json_data,content_type='application/json')
