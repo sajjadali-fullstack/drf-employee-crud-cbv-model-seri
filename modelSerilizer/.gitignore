@@ -1,0 +1,4 @@
+documentation.txt
+
+__pycache__/
+db.sqlite3
