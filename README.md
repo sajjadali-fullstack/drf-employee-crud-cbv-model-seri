@@ -33,10 +33,10 @@ It demonstrates full CRUD operations using JSON-based requests and a separate Py
 ## 📁 Project Structure
 
 testapp/
-├── models.py
-├── views.py (CBV CRUD API)
-├── serializers.py
-├── tests.py (API test client)
+  ├── models.py
+  ├── views.py (CBV CRUD API)
+  ├── serializers.py
+  ├── tests.py (API test client)
 
 ---
 
