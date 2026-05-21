@@ -38,9 +38,6 @@ testapp/
 
 ---
 
-## 🧪 Run Test Client
- >>> \modelSerilizer\testapp> py tests.py
-
 ## ⚠️ Important Notes
 - API expects JSON input  
 - CSRF is disabled for testing purposes  
@@ -54,3 +51,8 @@ testapp/
 - JSON parsing and rendering in APIs  
 - API testing using Python `requests` library  
 - Understanding CRUD architecture in REST APIs  
+
+
+## 🧪 Run Test Client
+  \modelSerilizer\testapp> py tests.py
+
