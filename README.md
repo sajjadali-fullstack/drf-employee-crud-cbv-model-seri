@@ -42,9 +42,10 @@ testapp/
  >>> \modelSerilizer\testapp> py tests.py
 
 ## ⚠️ Important Notes
-  API expects JSON input
-  CSRF is disabled for testing purposes
-  ID must exist for update/delete operations
+- API expects JSON input  
+- CSRF is disabled for testing purposes  
+- ID must exist for update and delete operations
+
 
 ## 📚 Learning Outcomes
 
