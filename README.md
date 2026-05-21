@@ -30,6 +30,12 @@ It demonstrates full CRUD operations using JSON-based requests and a separate Py
 
 ---
 
+### 🖥️ Terminal Output
+
+![API Terminal Output](model-serialization.png)
+
+---
+
 ## 📁 Project Structure
 
 testapp/
